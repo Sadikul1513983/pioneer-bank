@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pioneer-Bank</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-area">
+        <h1 class="text-center">Welcome to our Pioneer bank</h1>
+        <div class="submit-area">
+            <h4>login</h4>
+            <input type="text" class="form-control"placeholder="Email">
+            <br>
+            <input type="password" class="form-control" placeholder="password">
+            <br>
+            <button id="login" class="btn btn-success">enter</button>
+        </div>
+    </div>
+    <div id="transaction-area">
+        <h1>transaction area</h1>
+        <div class="row">
+            
+            <div class="col-md-4">
+                <div class="deposite status">
+                    <h5>deposite</h5>
+                    <h2>$ <span id="OlderAmount">00</span> </h2>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <div class="Withdraw status">
+                    <h5>Withdraw</h5>
+                    <h2>$ 00 </h2>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="Balance status">
+                    <h5>Balance</h5>
+                    <h2>$ <span id="NewerBalance">00</span> </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Deposite</h4>
+                     <input id="depositeAmount" type="text" class="form-control" placeholder="$ amaount you want to deposite"><br><button 
+                     id="add-deposite"       class="btn-success">Deposite</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submit-area">
+                    <h4>Withdraw</h4>
+                    <input   id="kaka" type="text" class="form-control" placeholder="$ amaount you want to Withdraw"><br>
+                    <button id="AddWithdraw" class="btn-success">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //login button event handler
+        let khaja=document.getElementById('login').addEventListener('click',function(){
+            let khajababa=document.getElementById('login-area');
+            khajababa.style.display='none';
+            const transactionArea=document.getElementById('transaction-area');
+            transactionArea.style.display='block'
+        })
+        //adding deposite
+       const depositebtn=document.getElementById('add-deposite').addEventListener('click',()=>{
+           const depositeAmount=GetInputNumber('depositeAmount');
+           
+            UpdateOurWork('OlderAmount',DepositeNumber);
+            UpdateOurWork('NewerBalance',DepositeNumber)
+           document.getElementById('depositeAmount').value='';
+
+       })
+       function UpdateOurWork(id,DepositeNumber){
+           const NewerBalance=document.getElementById(id).innerText;
+           const NewerBalanceNumber=parseFloat(NewerBalance);
+           const NewerBalanceTotal= DepositeNumber + NewerBalanceNumber;
+           document.getElementById(id).innerText=NewerBalanceTotal;
+       }
+
+       const WithdrawBtn=document.getElementById('AddWithdraw').addEventListener('click',()=>{
+           const uthan=GetInputNumber('kaka')
+       })
+    function GetInputNumber(id){
+           const kaka=document.getElementById(id).value;
+           const chacha=parseFloat(kaka);
+           return chacha;
+    }
+       
+    </script>
+</body>
+</html>

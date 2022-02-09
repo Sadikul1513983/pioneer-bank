@@ -27,20 +27,20 @@
             <div class="col-md-4">
                 <div class="deposite status">
                     <h5>deposite</h5>
-                    <h2>$ <span id="OlderAmount">00</span> </h2>
+                    <h2>$ <span id="OlderAmountOfDeposite">00</span> </h2>
                 </div>
                 
             </div>
             <div class="col-md-4">
                 <div class="Withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$ 00 </h2>
+                    <h2>$ <span id="WithdrawSpan"> 00</span> </h2>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="Balance status">
                     <h5>Balance</h5>
-                    <h2>$ <span id="NewerBalance">00</span> </h2>
+                    <h2>$ <span id="BalanceUpdate">00</span> </h2>
                 </div>
             </div>
         </div>
@@ -55,45 +55,52 @@
             <div class="col-md-6">
                 <div class="submit-area">
                     <h4>Withdraw</h4>
-                    <input   id="kaka" type="text" class="form-control" placeholder="$ amaount you want to Withdraw"><br>
-                    <button id="AddWithdraw" class="btn-success">Withdraw</button>
+                    <input   id="WithdrawSequence" type="text" class="form-control" placeholder="$ amaount you want to Withdraw"><br>
+                    <button id="BtnOfWithdraw" class="btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
         //login button event handler
-        let khaja=document.getElementById('login').addEventListener('click',function(){
-            let khajababa=document.getElementById('login-area');
-            khajababa.style.display='none';
+        let logninHaldler=document.getElementById('login').addEventListener('click',function(){
+            let logninHaldlerArea=document.getElementById('login-area');
+            logninHaldlerArea.style.display='none';
             const transactionArea=document.getElementById('transaction-area');
             transactionArea.style.display='block'
         })
-        //adding deposite
-       const depositebtn=document.getElementById('add-deposite').addEventListener('click',()=>{
-           const depositeAmount=GetInputNumber('depositeAmount');
-           
-            UpdateOurWork('OlderAmount',DepositeNumber);
-            UpdateOurWork('NewerBalance',DepositeNumber)
-           document.getElementById('depositeAmount').value='';
 
-       })
-       function UpdateOurWork(id,DepositeNumber){
-           const NewerBalance=document.getElementById(id).innerText;
-           const NewerBalanceNumber=parseFloat(NewerBalance);
-           const NewerBalanceTotal= DepositeNumber + NewerBalanceNumber;
-           document.getElementById(id).innerText=NewerBalanceTotal;
-       }
+        function UpadateOurWork(id){
+            const GetElement = document.getElementById(id).value;
+            const GetElementNumber=parseFloat(GetElement);
+            return GetElementNumber;
+        }
 
-       const WithdrawBtn=document.getElementById('AddWithdraw').addEventListener('click',()=>{
-           const uthan=GetInputNumber('kaka')
-       })
-    function GetInputNumber(id){
-           const kaka=document.getElementById(id).value;
-           const chacha=parseFloat(kaka);
-           return chacha;
-    }
-       
+        function UpdateOurWorkingMethod(id,GetElementNumber){
+            const GetSpecificElement=document.getElementById(id).innerText;
+            const GetSpecificElementNumber=parseFloat(GetSpecificElement);
+            const GetSpecificElementTotal=GetElementNumber+GetSpecificElementNumber;
+            document.getElementById(id).innerText=GetSpecificElementTotal;
+        }
+        const GetDepositebtn=document.getElementById('add-deposite').addEventListener('click',()=>{
+            const GetElementNumber=UpadateOurWork('depositeAmount');
+            UpdateOurWorkingMethod('OlderAmountOfDeposite',GetElementNumber);
+            UpdateOurWorkingMethod('BalanceUpdate',GetElementNumber);
+            document.getElementById('depositeAmount').value='';
+        })
+        function UpdateOurWorkingMethodInNegetive(id,GetElementNumber){
+            const GetSpecificElement=document.getElementById(id).innerText;
+            const GetSpecificElementNumber=parseFloat(GetSpecificElement);
+            const GetSpecificElementTotal=GetSpecificElementNumber- GetElementNumber  ;1
+            document.getElementById(id).innerText=GetSpecificElementTotal;
+        }
+        const GetWithdrawbtn=document.getElementById('BtnOfWithdraw').addEventListener('click',()=>{
+            const GetElementNumber=UpadateOurWork('WithdrawSequence');
+            UpdateOurWorkingMethod('WithdrawSpan',GetElementNumber);//
+            UpdateOurWorkingMethodInNegetive('BalanceUpdate',GetElementNumber);
+            document.getElementById('WithdrawSequence').value='';
+        })
+
     </script>
 </body>
 </html>
